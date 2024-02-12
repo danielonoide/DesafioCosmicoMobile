@@ -21,6 +21,11 @@ public class AstronautsSpecial : Area2D
         {
             Extents = new Vector2(16, 1)
         };
+
+        if(Globals.MobileDevice)
+        {
+            GetNode<TextureButton>("LaunchBTN").Visible = true;
+        }
     }
 
     public override void _Process(float delta)
@@ -144,20 +149,37 @@ public class AstronautsSpecial : Area2D
     } */
 
 
+    private void Drop()
+    {
+        GetTree().CallGroup("Escenarios", "ChangeTurn");
+        LaunchBalloon();
+        QueueFree();
+    }
+
+    private void AttemptDrop()
+    {
+        if(canDrop)
+        {
+            Drop();
+        }
+        else
+        {
+            launchRestart.Play();
+        }
+    }
+
+    private void _on_LaunchBTN_pressed()
+    {
+        AttemptDrop();
+    }
+
     public override void _Input(InputEvent @event)
     {
-        if(@event is InputEventMouseButton mouseButton && mouseButton.ButtonIndex==(int)ButtonList.Left & mouseButton.Pressed)
+        if(@event is InputEventMouseButton mouseButton && mouseButton.ButtonIndex==(int)ButtonList.Left && mouseButton.Pressed
+        && !Globals.MobileDevice
+        )
         {
-            if(canDrop)
-            {
-                GetTree().CallGroup("Escenarios", "ChangeTurn");
-                LaunchBalloon();
-                QueueFree();
-            }
-            else
-            {
-                launchRestart.Play();
-            }
+            AttemptDrop();
         }
 
         if(@event is InputEventMouseMotion)

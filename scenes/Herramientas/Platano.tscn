@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sprites/tools/platano.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Herramientas/Platano.cs" type="Script" id=2]
 [ext_resource path="res://SFX/LaunchRestart.mp3" type="AudioStream" id=3]
 [ext_resource path="res://SFX/Tools/Banana.mp3" type="AudioStream" id=4]
+[ext_resource path="res://sprites/PNG/Buttons/BTNs/Ok_BTN.png" type="Texture" id=5]
+[ext_resource path="res://sprites/PNG/Buttons/BTNs_Active/Ok_BTN.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 61.5, 43 )
@@ -40,7 +42,19 @@ position = Vector2( 0, 0.5 )
 shape = SubResource( 3 )
 disabled = true
 
+[node name="LaunchBTN" type="TextureButton" parent="."]
+visible = false
+margin_left = 117.0
+margin_top = 409.0
+margin_right = 157.0
+margin_bottom = 449.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 6 )
+
 [connection signal="body_entered" from="BananaIsColliding" to="." method="_on_BananaIsColliding_body_entered"]
 [connection signal="body_exited" from="BananaIsColliding" to="." method="_on_BananaIsColliding_body_exited"]
 [connection signal="input_event" from="BananaIsColliding" to="." method="_on_BananaIsColliding_input_event"]
 [connection signal="finished" from="SoundEffect" to="." method="_on_SoundEffect_finished"]
+[connection signal="pressed" from="LaunchBTN" to="." method="_on_LaunchBTN_pressed"]

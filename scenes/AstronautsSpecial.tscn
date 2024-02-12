@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://sprites/SpecialHabilities/image-removebg-preview (3).png" type="Texture" id=1]
 [ext_resource path="res://scripts/AstronautsSpecial.cs" type="Script" id=2]
 [ext_resource path="res://SFX/LaunchRestart.mp3" type="AudioStream" id=3]
+[ext_resource path="res://sprites/PNG/Buttons/BTNs/Ok_BTN.png" type="Texture" id=4]
+[ext_resource path="res://sprites/PNG/Buttons/BTNs_Active/Ok_BTN.png" type="Texture" id=5]
 
 [node name="SpaceShip" type="Area2D"]
 script = ExtResource( 2 )
@@ -19,4 +21,16 @@ default_color = Color( 1, 1, 1, 1 )
 stream = ExtResource( 3 )
 bus = "SFX"
 
+[node name="LaunchBTN" type="TextureButton" parent="."]
+visible = false
+margin_left = 117.0
+margin_top = 409.0
+margin_right = 157.0
+margin_bottom = 449.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+
 [connection signal="input_event" from="." to="." method="_on_SpaceShip_input_event"]
+[connection signal="pressed" from="LaunchBTN" to="." method="_on_LaunchBTN_pressed"]

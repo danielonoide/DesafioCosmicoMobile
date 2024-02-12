@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public abstract class ProjectileLauncher : Area2D
 {
 
-    protected bool selected=false;
+    public static bool selected = false;
     protected float lineWidth=10;
     protected Vector2 direction = Vector2.Zero;
     protected Vector2 initialVelocity = Vector2.Zero;

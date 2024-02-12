@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://fonts/LATINWD.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://sprites/PNG/Level_Menu/Window.png" type="Texture" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://sprites/PNG/Pause/TableGold.png" type="Texture" id=21]
 [ext_resource path="res://sprites/PNG/Buttons/BTNs/unzoom_vector_gold.svg" type="Texture" id=22]
 [ext_resource path="res://sprites/PNG/Buttons/BTNs/zoom_vector_gold.svg" type="Texture" id=23]
+[ext_resource path="res://themes/AcceptDialogTheme.tres" type="Theme" id=24]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -1004,10 +1005,11 @@ custom_fonts/font = ExtResource( 10 )
 text = "0"
 
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
-margin_left = 524.0
-margin_top = 320.0
-margin_right = 842.0
-margin_bottom = 395.0
+margin_left = 287.0
+margin_top = 295.0
+margin_right = 1078.0
+margin_bottom = 485.0
+theme = ExtResource( 24 )
 popup_exclusive = true
 window_title = "Sin herramientas"
 dialog_text = "Los equipos deben tener al menos una herramienta seleccionada"

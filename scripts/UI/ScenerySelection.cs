@@ -108,6 +108,14 @@ public class ScenerySelection : CanvasLayer
             directory.Remove(Constants.SaveFileNames[scenery]);
         }
 
+        if(Globals.MobileDevice)
+        {
+            InventorySelectionMobile inventorySelectionMobile = InventorySelectionMobile.GetInventorySelectionMobile(scenery);
+            AddChild(inventorySelectionMobile);
+            DisableContinueButtons();
+            return;
+        }
+
         InventorySelection inventorySelection=InventorySelection.GetInventorySelection(scenery);
         AddChild(inventorySelection);   
         DisableContinueButtons();

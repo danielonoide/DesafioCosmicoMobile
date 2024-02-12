@@ -31,7 +31,16 @@ public class ActionCanceller : CanvasLayer
         signalManager=GetNode<General>("/root/General");
         signalManager.Connect(nameof(General.OnTurnChanged), this, nameof(OnTurnChanged));
         signalManager.Connect(nameof(General.OnThrowableLaunched), this, nameof(OnThrowableLaunched));
-        
+
+        if(!Globals.MobileDevice)
+        {
+            GetNode<Label>("Label").Visible = true;
+        }
+        else
+        {
+            GetNode<TextureButton>("CancelBTN").Visible = true;
+        }
+
     }
 
     public void Cancel()
@@ -121,6 +130,11 @@ public class ActionCanceller : CanvasLayer
             lanzaglobos1.QueueFree();
         }
 
+    }
+
+    private void _on_CancelBTN_pressed()
+    {
+        Cancel();
     }
 
     private void OnTurnChanged(bool martianTurn)

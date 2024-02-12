@@ -5,9 +5,9 @@ using System.Linq;
 
 public class InventorySelection : CanvasLayer
 {
-    byte scenery;
+    protected byte scenery;
 
-    static readonly byte[] starsNumber=new byte[3]{18, 15, 12};
+    protected static readonly byte[] starsNumber=new byte[3]{18, 15, 12};
     
 
     /*
@@ -28,7 +28,7 @@ public class InventorySelection : CanvasLayer
         1,3,1,2,3,2,2,2,2
     };
 
-    static byte[] astronautsTools=new byte[9]{10,10,10,10,10,10,10,10,10}, martiansTools=new byte[9]{10,10,10,10,10,10,10,10,10};
+    protected static byte[] astronautsTools=new byte[9]{10,10,10,10,10,10,10,10,10}, martiansTools=new byte[9]{10,10,10,10,10,10,10,10,10};
 
     public static byte[] AstronautsTools { get => astronautsTools;}
     public static byte[] MartiansTools {get => martiansTools;}
@@ -63,7 +63,7 @@ public class InventorySelection : CanvasLayer
 
     TextureButton[] readyButtons; //0 astronautas y 1 marcianos
 
-    byte astronautsCounter, martiansCounter;
+    protected byte astronautsCounter, martiansCounter;
 
     AcceptDialog acceptDialog;
 
@@ -77,14 +77,18 @@ public class InventorySelection : CanvasLayer
         astronautsCounter=martiansCounter=starsNumber[scenery];
         astronautsLabel.Text=martiansLabel.Text=astronautsCounter.ToString();
 
-        //reiniciar inventarios
-        astronautsTools=new byte[9]{0,0,0,0,0,0,0,0,0};
-        martiansTools=new byte[9]{0,0,0,0,0,0,0,0,0};
-
+        RestartInventories();
         ConfigureButtons();
         ConfigureCounters();
         ConfigureReadyButtons();
         ConfigureTextBoxes();
+    }
+
+    protected void RestartInventories()
+    {
+        //reiniciar inventarios
+        astronautsTools=new byte[9]{0,0,0,0,0,0,0,0,0};
+        martiansTools=new byte[9]{0,0,0,0,0,0,0,0,0};
     }
 
     private void ConfigureReadyButtons()
@@ -204,19 +208,8 @@ public class InventorySelection : CanvasLayer
 
     private void StartMatch(byte scenery)
     {
-        bool astronautsZeroTools=false;
-        bool martiansZeroTools=false;
-
-        
-        if(astronautsTools.All(t => t==0))
-        {
-            astronautsZeroTools=true;
-        }
-
-        if(martiansTools.All(t=> t==0))
-        {
-            martiansZeroTools=true;
-        }
+        bool astronautsZeroTools = astronautsTools.All(t => t==0);
+        bool martiansZeroTools = martiansTools.All(t=> t==0);
 
         if(!astronautsZeroTools && !martiansZeroTools)
         {

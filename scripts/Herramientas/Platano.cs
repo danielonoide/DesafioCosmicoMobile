@@ -33,6 +33,11 @@ public class Platano : Throwable
 
         rectangleShape2D=new();
         rectangleShape2D.Extents=new Vector2(62,1);
+
+        if(Globals.MobileDevice)
+        {
+            GetNode<TextureButton>("LaunchBTN").Visible = true;
+        }
     }
 
     public override void _Process(float delta)
@@ -124,24 +129,39 @@ public class Platano : Throwable
         QueueFree();
     }
 
+    private void Drop()
+    {
+        dropped=true;
+        collisionShape2D.Disabled=false;
+        martianDropped=Escenario.MartianTurn;
+        SetVelocity(new Vector2(0,-1));
+        signalManager.EmitSignal(nameof(General.OnThrowableLaunched), this);
+    }
+
+    private void AttemptDrop()
+    {
+        if(CanDrop())
+        {
+            Drop();
+        }
+        else
+        {
+            restartSound.Play();
+        }
+    }
+
     private void _on_BananaIsColliding_input_event(object viewport, object @event, int shape_idx)
     {
         if(@event is InputEventMouseButton mouseButton && mouseButton.ButtonIndex==(int)ButtonList.Left
-         && !mouseButton.Pressed && !dropped)
+         && !mouseButton.Pressed && !dropped && !Globals.MobileDevice)
         {
-            if(CanDrop())
-            {
-                dropped=true;
-                collisionShape2D.Disabled=false;
-                martianDropped=Escenario.MartianTurn;
-                SetVelocity(new Vector2(0,-1));
-                signalManager.EmitSignal(nameof(General.OnThrowableLaunched), this);
-            }
-            else
-            {
-                restartSound.Play();
-            }
+            AttemptDrop();
         }
+    }
+
+    private void _on_LaunchBTN_pressed()
+    {
+        AttemptDrop();
     }
 
     public override Godot.Collections.Dictionary<string,object> Save()

@@ -150,6 +150,12 @@ public partial class Escenario : Node2D
 			LoadGame();			
 		}
 
+		//mobile
+		if(Globals.MobileDevice)
+		{
+			GetNode<Node2D>("HUD/Zoom").Visible = false;
+		}
+
 	}
 
 	
