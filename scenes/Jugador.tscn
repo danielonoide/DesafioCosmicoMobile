@@ -102,6 +102,7 @@ position = Vector2( 0, -16 )
 scale = Vector2( 0.484, 0.461 )
 frames = SubResource( 3 )
 animation = "astronaut_idle"
+frame = 1
 playing = true
 
 [node name="TextureRect" type="TextureRect" parent="."]

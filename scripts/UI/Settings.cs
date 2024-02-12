@@ -26,6 +26,11 @@ public class Settings : CanvasLayer
 
         fullscreenToggle = GetNode<CheckButton>("VBoxContainer/HBoxContainer/CheckButton");
         fullscreenToggle.Pressed = OS.WindowFullscreen;
+
+        if(Globals.MobileDevice)
+        {
+            GetNode<Container>("%HBoxContainer").Visible = false;
+        }
     }
 
     private void OnScreenStatusChanged(bool fullscreen)
