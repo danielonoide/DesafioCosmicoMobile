@@ -42,12 +42,15 @@ position = Vector2( 0, 0.5 )
 shape = SubResource( 3 )
 disabled = true
 
-[node name="LaunchBTN" type="TextureButton" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="LaunchBTN" type="TextureButton" parent="CanvasLayer"]
 visible = false
 margin_left = 117.0
 margin_top = 409.0
-margin_right = 157.0
-margin_bottom = 449.0
+margin_right = 327.0
+margin_bottom = 619.0
 rect_scale = Vector2( 0.3, 0.3 )
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
@@ -57,4 +60,4 @@ texture_hover = ExtResource( 6 )
 [connection signal="body_exited" from="BananaIsColliding" to="." method="_on_BananaIsColliding_body_exited"]
 [connection signal="input_event" from="BananaIsColliding" to="." method="_on_BananaIsColliding_input_event"]
 [connection signal="finished" from="SoundEffect" to="." method="_on_SoundEffect_finished"]
-[connection signal="pressed" from="LaunchBTN" to="." method="_on_LaunchBTN_pressed"]
+[connection signal="pressed" from="CanvasLayer/LaunchBTN" to="." method="_on_LaunchBTN_pressed"]

@@ -36,7 +36,7 @@ public class Platano : Throwable
 
         if(Globals.MobileDevice)
         {
-            GetNode<TextureButton>("LaunchBTN").Visible = true;
+            GetNode<TextureButton>("CanvasLayer/LaunchBTN").Visible = true;
         }
     }
 
@@ -143,6 +143,7 @@ public class Platano : Throwable
         if(CanDrop())
         {
             Drop();
+            GetNode<TextureButton>("CanvasLayer/LaunchBTN").Visible = false;
         }
         else
         {

@@ -149,7 +149,7 @@ public partial class Escenario : Node2D
 
 		}
 
-		if(@event is InputEventScreenDrag screenDrag)
+		if(@event is InputEventScreenDrag screenDrag && Globals.MobileDevice && !GetTree().HasGroup("GloboTeledirigido"))
 		{
 			touches[screenDrag.Index] = screenDrag.Position;
 			if(touchPressed && (!ProjectileLauncher.selected || screenDrag.Index>0))

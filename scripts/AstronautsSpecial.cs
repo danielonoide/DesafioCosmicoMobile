@@ -24,7 +24,7 @@ public class AstronautsSpecial : Area2D
 
         if(Globals.MobileDevice)
         {
-            GetNode<TextureButton>("LaunchBTN").Visible = true;
+            GetNode<TextureButton>("CanvasLayer/LaunchBTN").Visible = true;
         }
     }
 
@@ -182,7 +182,7 @@ public class AstronautsSpecial : Area2D
             AttemptDrop();
         }
 
-        if(@event is InputEventMouseMotion)
+        if(@event is InputEventMouseMotion || @event is InputEventScreenTouch)
         {
             mouseMoving=true;
         }
