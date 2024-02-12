@@ -26,6 +26,15 @@ public class Thrower : ProjectileLauncher
         //Position = throwable.GlobalPosition;
         //Position = throwable.Position;
         Position += offset;
+
+
+        if(Globals.MobileDevice)
+        {
+            var collisionShape2D = GetNode<CollisionShape2D>("CollisionShape2D");
+            var shape = collisionShape2D.Shape as CircleShape2D;
+            shape.Radius *= 1.2f;
+            GetNode<Sprite>("Sprite").Scale = new Vector2(0.5f, 0.5f);
+        }
     }
 
     public override void _Process(float delta)
