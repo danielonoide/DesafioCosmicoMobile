@@ -20,6 +20,7 @@ public class Platano : Throwable
     public CollisionShape2D collisionShape2D;
 
     public bool detectPlayers=false;
+    public TextureButton launchButton; 
 
     General signalManager;
 
@@ -30,13 +31,14 @@ public class Platano : Throwable
         restartSound=GetNode<AudioStreamPlayer>("LaunchRestartSound");
         soundEffect=GetNode<AudioStreamPlayer>("SoundEffect");
         collisionShape2D=GetNode<CollisionShape2D>("CollisionShape2D");
+        launchButton = GetNode<TextureButton>("CanvasLayer/LaunchBTN");
 
         rectangleShape2D=new();
         rectangleShape2D.Extents=new Vector2(62,1);
 
         if(Globals.MobileDevice)
         {
-            GetNode<TextureButton>("CanvasLayer/LaunchBTN").Visible = true;
+            launchButton.Visible = true;
         }
     }
 

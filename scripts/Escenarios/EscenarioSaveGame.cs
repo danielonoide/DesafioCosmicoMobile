@@ -237,9 +237,10 @@ public partial class Escenario : Node2D
 				platano.martianDropped=(bool)node["martianDropped"];
 				platano.dropped=(bool)node["dropped"];
 				platano.loaded=velocity.y<5 && platano.dropped; //GUARRADA
+				platano.launchButton.Visible = !platano.dropped;
 				platano.detectPlayers=platano.dropped;
 
-				platano.collisionShape2D.Disabled=false;
+				platano.collisionShape2D.Disabled=!platano.dropped;
 
 				if(!platano.dropped)
 				{
