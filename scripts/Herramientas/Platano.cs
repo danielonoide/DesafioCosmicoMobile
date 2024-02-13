@@ -40,11 +40,6 @@ public class Platano : Throwable
         }
     }
 
-    public override void _Process(float delta)
-    {
-        if(!dropped)Position=GetGlobalMousePosition();
-    }
-
     public override void _PhysicsProcess(float delta)
     {
         if(velocity!=Vector2.Zero) 
@@ -163,6 +158,24 @@ public class Platano : Throwable
     private void _on_LaunchBTN_pressed()
     {
         AttemptDrop();
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if(dropped)
+        {
+            return;
+        }
+
+        if(@event is InputEventMouseButton)
+        {
+            Position = GetGlobalMousePosition();
+        }
+
+        if(@event is InputEventMouseMotion)
+        {
+            Position = GetGlobalMousePosition();
+        }
     }
 
     public override Godot.Collections.Dictionary<string,object> Save()

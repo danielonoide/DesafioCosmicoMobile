@@ -10,7 +10,6 @@ public class AstronautsSpecial : Area2D
 
     bool canDrop;
 
-    bool mouseMoving=false;
     public override void _Ready()
     {
         Inventory.Unopenable=true;
@@ -28,24 +27,7 @@ public class AstronautsSpecial : Area2D
         }
     }
 
-    public override void _Process(float delta)
-    {
-        //GD.Print(canDrop);
-        if(mouseMoving)
-        {
-            Position=new Vector2(GetGlobalMousePosition().x, Position.y);
-        }
-        mouseMoving=false;
-    }
 
-
-    public override void _PhysicsProcess(float delta)
-    {
-        if(mouseMoving)
-        {
-            DrawLine();
-        }
-    }
 
     private void DrawLine()
     {
@@ -173,7 +155,7 @@ public class AstronautsSpecial : Area2D
         AttemptDrop();
     }
 
-    public override void _Input(InputEvent @event)
+    public override void _UnhandledInput(InputEvent @event)
     {
         if(@event is InputEventMouseButton mouseButton && mouseButton.ButtonIndex==(int)ButtonList.Left && mouseButton.Pressed
         && !Globals.MobileDevice
@@ -182,9 +164,17 @@ public class AstronautsSpecial : Area2D
             AttemptDrop();
         }
 
-        if(@event is InputEventMouseMotion || @event is InputEventScreenTouch)
+
+        if(@event is InputEventMouseButton)
         {
-            mouseMoving=true;
+            Position=new Vector2(GetGlobalMousePosition().x, Position.y);
+            DrawLine();
+        }
+
+        if(@event is InputEventMouseMotion)
+        {
+            Position=new Vector2(GetGlobalMousePosition().x, Position.y);
+            DrawLine();
         }
     }
 
