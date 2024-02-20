@@ -142,10 +142,8 @@ public class General : Node2D
     {
         if (@event is InputEventKey eventKey)
         {
-            // Verifica si se presiona la tecla F11
             if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.F11)
             {
-                // Cambia el estado de pantalla completa
                 OS.WindowFullscreen = !OS.WindowFullscreen;
 				EmitSignal(nameof(OnScreenStatusChanged), OS.WindowFullscreen);
             }

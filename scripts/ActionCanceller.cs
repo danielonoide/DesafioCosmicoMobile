@@ -24,6 +24,8 @@ public class ActionCanceller : CanvasLayer
         }
     }
 
+    TextureButton cancelButton;
+    Rect2 cancelButtonRect2;
     General signalManager;
 
     public override void _Ready()
@@ -38,7 +40,9 @@ public class ActionCanceller : CanvasLayer
         }
         else
         {
-            GetNode<TextureButton>("CancelBTN").Visible = true;
+            cancelButton = GetNode<TextureButton>("CancelBTN");
+            cancelButton.Visible = true;
+            cancelButtonRect2 = new(cancelButton.RectPosition, cancelButton.RectSize * cancelButton.RectScale);
         }
 
     }
@@ -132,10 +136,10 @@ public class ActionCanceller : CanvasLayer
 
     }
 
-    private void _on_CancelBTN_pressed()
+/*     private void _on_CancelBTN_pressed()
     {
         Cancel();
-    }
+    } */
 
     private void OnTurnChanged(bool martianTurn)
     {
@@ -155,7 +159,14 @@ public class ActionCanceller : CanvasLayer
         {
             Cancel();
         }
+
+        if(@event is InputEventMouseButton mouseButton && mouseButton.Pressed && Globals.MobileDevice && cancelButtonRect2.HasPoint(mouseButton.Position))
+        {
+            Cancel();
+        }
     }
+
+
 
 
     public static ActionCanceller GetToolCanceller(byte _tool)
