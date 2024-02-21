@@ -160,7 +160,8 @@ public class ActionCanceller : CanvasLayer
             Cancel();
         }
 
-        if(@event is InputEventMouseButton mouseButton && mouseButton.Pressed && Globals.MobileDevice && cancelButtonRect2.HasPoint(mouseButton.Position))
+        if(@event is InputEventMouseButton mouseButton && mouseButton.Pressed && 
+        (Globals.MobileDevice && cancelButtonRect2.HasPoint(mouseButton.Position) || mouseButton.ButtonIndex==(int)ButtonList.Middle))
         {
             Cancel();
         }

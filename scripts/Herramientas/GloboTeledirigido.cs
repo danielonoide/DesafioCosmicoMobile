@@ -75,21 +75,4 @@ public class GloboTeledirigido : GloboConAgua
             GetTree().CallGroup("Escenarios", "AddStar", jugador.IsMartian, true);
         }
     }
-
-    protected void _on_MobilePlatformPlayer_body_entered(Node body)
-    {
-        if(body is Jugador jugador && jugador.OnMovingPlatform!=null)
-        {
-            SetCollisionMaskBit(1, false);
-        }
-    }
-
-    protected void _on_MobilePlatformPlayer_body_exited(Node body)
-    {
-        if(body is Jugador)
-        {
-            SetCollisionMaskBit(1, true);
-        }
-    }
-
 }

@@ -100,11 +100,11 @@ public class Lanzaglobos : ProjectileLauncher, IPersist
                     return;
                 } */
 
-                if(collidingBodies.Count>0 || !canThrow)
+/*                 if(collidingBodies.Count>0 || !canThrow)
                 {
                     RestartLaunch();
                     return;
-                }
+                } */
 
                 balloonsLaunched++;
                 GloboConAgua throwedBalloon=LaunchBalloon();

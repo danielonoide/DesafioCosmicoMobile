@@ -24,9 +24,6 @@ public abstract class ProjectileLauncher : Area2D
 
     protected abstract void CalculateInitialVelocity();
 
-    protected bool canThrow=true;
-
-
     public override void _Ready()
     {
         line = GetNode<Line2D>("Line2D");
@@ -44,9 +41,7 @@ public abstract class ProjectileLauncher : Area2D
     {
         if (!selected) return;
 
-        canThrow=true;
         UpdateTrajectory(delta);
-
     }
 
     protected void RemoveCollisions()
@@ -112,7 +107,7 @@ public abstract class ProjectileLauncher : Area2D
         }
     }
 
-    protected bool IsCollidingShape(Vector2 position, float angle)
+/*     protected bool IsCollidingShape(Vector2 position, float angle)
     {
         Physics2DShapeQueryParameters queryParameters = new()
         {
@@ -139,7 +134,7 @@ public abstract class ProjectileLauncher : Area2D
         }
 
         return false;
-    }
+    } */
 
     protected bool IsCollidingPoint(Vector2 position)
     {
@@ -149,10 +144,10 @@ public abstract class ProjectileLauncher : Area2D
         foreach (Godot.Collections.Dictionary result in queryResult)
         {
 
-            if(result["collider"] is Jugador jugador && jugador!=Inventory.SelectedPlayer) // si colisiona con un jugador y el jugador no es el seleccionado
+/*             if(result["collider"] is Jugador jugador && jugador!=Inventory.SelectedPlayer) // si colisiona con un jugador y el jugador no es el seleccionado
             {
                 canThrow=false;
-            }
+            } */
 
             if (result["collider"] is not KinematicBody2D)
             {
@@ -163,15 +158,5 @@ public abstract class ProjectileLauncher : Area2D
         return false;
     }
 
-    
-    protected bool CorrectAngle()
-    {
-        if((degAngle<=-88 && degAngle>=-92) || (degAngle>=12 && degAngle<=150))
-        {
-            return false;
-        }
-
-        return true;
-    }
 
 }
