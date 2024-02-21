@@ -25,7 +25,8 @@ public class Tutorials : CanvasLayer
             "En tu turno, has clic en uno de los miembros de tu equipo para abrir el inventario",
             "La compra y venta funciona igual que en el   menú de selección de inventario",
             "Has clic en los íconos para seleccionar",
-            "Usa la herramienta"
+            "Usa la herramienta",
+            "Puedes cancelar su lanzamiento presionando Q o la rueda del mouse o el botón si estás en móvil",
         },
 
         new string[]
@@ -115,6 +116,11 @@ public class Tutorials : CanvasLayer
         {
             var pngPath = $"res://sprites/Tutorials/{currentIndex}{i}.png";
             var tresPath = $"res://sprites/Tutorials/{currentIndex}{i}.tres";
+
+            if(Globals.MobileDevice)
+            {
+                strings[i] = strings[i].Replace("ratón", "dedo");
+            }
 
             if(ResourceLoader.Exists(pngPath))
             {

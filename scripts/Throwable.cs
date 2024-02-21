@@ -22,7 +22,7 @@ public abstract class Throwable : KinematicBody2D, IPersist
 
         if(IsOnFloor()) 
 		{
-			velocity.x=0;
+			velocity.x *= 0.9f;
         }
 			
     }

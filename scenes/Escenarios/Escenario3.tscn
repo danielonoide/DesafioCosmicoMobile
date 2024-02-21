@@ -1188,7 +1188,7 @@ texture = ExtResource( 6 )
 position = Vector2( 242, -4 )
 frames = SubResource( 200 )
 animation = "New Anim"
-frame = 193
+frame = 82
 playing = true
 
 [node name="Music" parent="." index="3"]
