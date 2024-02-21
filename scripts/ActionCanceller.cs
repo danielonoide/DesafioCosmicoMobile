@@ -154,14 +154,18 @@ public class ActionCanceller : CanvasLayer
     
     public override void _Input(InputEvent @event)
     {
-        //GD.Print(@event);
         if(@event is InputEventKey inputEventKey && inputEventKey.Scancode==(int)KeyList.Q && inputEventKey.Pressed)
         {
             Cancel();
         }
 
-        if(@event is InputEventMouseButton mouseButton && mouseButton.Pressed && 
-        (Globals.MobileDevice && cancelButtonRect2.HasPoint(mouseButton.Position) || mouseButton.ButtonIndex==(int)ButtonList.Middle))
+        if(@event is InputEventMouseButton mouseButton && mouseButton.Pressed && mouseButton.ButtonIndex==(int)ButtonList.Middle)
+        {
+            Cancel();
+        }
+
+        if(@event is InputEventScreenTouch screenTouch && screenTouch.Pressed && 
+        Globals.MobileDevice && cancelButtonRect2.HasPoint(screenTouch.Position))
         {
             Cancel();
         }

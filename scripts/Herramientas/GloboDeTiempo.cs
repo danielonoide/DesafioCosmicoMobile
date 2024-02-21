@@ -30,6 +30,11 @@ public class GloboDeTiempo : GloboConAgua
         subtractButton=GetNode<TextureButton>("Selector/Subtract");
         timeLabel=GetNode<Label>("Selector/Time");
         selector=GetNode<Control>("Selector");
+
+        if(Globals.MobileDevice)
+        {
+            selector.RectScale *= 3;
+        }
         
     }
 
