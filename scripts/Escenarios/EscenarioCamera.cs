@@ -84,7 +84,7 @@ public partial class Escenario : Node2D
 		UnZoom();
 	}
 
-	public override void _UnhandledInput(InputEvent @event)
+	public override void _Input(InputEvent @event)
 	{
 		if(@event is InputEventMouseButton evento)
 		{
@@ -160,7 +160,7 @@ public partial class Escenario : Node2D
 				newPosition.x = Mathf.Clamp(newPosition.x, LeftLimitZoom, RightLimitZoom);
 				newPosition.y = Mathf.Clamp(newPosition.y, TopLimitZoom, BottomLimitZoom);
 
-				camera.Position=newPosition;
+				camera.Position = newPosition;
 			}
 			else
 			{
@@ -179,6 +179,23 @@ public partial class Escenario : Node2D
 		{
 			//touches[100] = camera.ToLocal(GetGlobalMousePosition());
 			touches[100] = GetViewport().GetMousePosition();
+		} */
+
+		//simulate touch real
+/*  		if(@event is InputEventKey eventKey && eventKey.Scancode == (int)KeyList.A)
+		{
+			Vector2 screenSize = GetViewportRect().Size;
+
+			// Crea un nuevo evento de pantalla táctil en el centro de la pantalla
+			InputEventScreenTouch touchEvent = new()
+			{
+				Position = screenSize / 2,  // Centrado en la pantalla
+				Pressed = eventKey.Pressed,  // Simula toque presionado
+				Index = 0  // Puedes cambiar esto según tus necesidades
+			};
+
+			// Envía el evento al sistema de entrada
+			Input.ParseInputEvent(touchEvent);
 		} */
 		
 	}

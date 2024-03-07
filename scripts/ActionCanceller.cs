@@ -49,6 +49,7 @@ public class ActionCanceller : CanvasLayer
 
     public void Cancel()
     {
+        ProjectileLauncher.selected = false;
         if(cancelMovement)
         {
             CancelMovement();
